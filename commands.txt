@@ -1,1 +1,7 @@
 ansible localhost -m ping
+ansible localhost -m find -a "paths=Downloads file_type=file"  -> I have to be in ~ to get results from this command. This also could have a "success return" but without showing anything
+ansible localhost -m find -a "paths=Downloads file_type=directory"
+ansible-playbook first.yaml
+ansible-playbook first.yaml -v
+ansible-config init --disabled -t all > ansible.cfg  --> To create a default .cfg file
+ansible-config dump --only-changed --> To see the path of the .cfg file

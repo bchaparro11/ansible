@@ -1,0 +1,10 @@
+---
+  - name: "Second Playbook"
+    hosts: localhost
+    tasks:
+      - name: "reachable?"
+        ping:
+      - name: "read modules"
+        find:
+          path: ./
+          file_type: file
