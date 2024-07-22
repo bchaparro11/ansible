@@ -6,3 +6,5 @@ ansible-playbook first.yaml -v
 ansible-config init --disabled -t all > ansible.cfg  --> To create a default .cfg file
 ansible-config dump --only-changed --> To see the path of the .cfg file
 ansible-playbook 3_.yaml -i ./myhosts  --> To point out where's the hosts file
+ansible all -m ping -i myhosts
+ansible-playbook 6_concurrency_react.yaml -i myhosts -f 30 --> By default -f is 5

@@ -1,0 +1,27 @@
+---
+  - name: "Testing Reaction"
+    hosts: logicservers
+    strategy: free
+    tasks:
+      - name: "Shutdown Server"
+        debug:
+          msg: "Shutdown {{ inventory_hostname }}"
+
+      - name: "Upgrade Firmware"
+        debug:
+          msg: "Upgrade {{ inventory_hostname }}"
+        notify: Restart Server
+        changed_when: True
+
+      - name: "Start Server"
+        debug:
+          msg: "Start {{ inventory_hostname }}"
+
+      - name: "Verify Server"
+        debug:
+          msg: "Verify {{ inventory_hostname }}"
+    
+    handlers:
+      - name: Restart Server
+        debug:
+          msg: "CALLED HANDLER FOR RESTART"
