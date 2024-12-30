@@ -1,2 +1,40 @@
+1. UI for Ansible:
+    1. Paid -> Red Hat Ansible Automation Platform (then Red Hat Ansible Tower)
+    2. Free -> Ansible AWX
+
+2. There are some certifications about Ansible in Red Hat Web Page
+3. Ways Red Hat acquire money from Ansible company purchase:
+    1. Red Hat Ansible Automation Platform
+    2. Ansible Consulting
+
+4. Ansible Documentation:
+    1. https://docs.ansible.com/ansible/latest/index.html
+
+5. Ansible GitHub:
+    1. https://github.com/ansible/ansible
+
+6. Through plugins:
+    1. We can update the list of hosts that we have in AWS dyanmically
+
+7. Place where community writes Ansible Roles:"
+    1. https://galaxy.ansible.com/ui/
+
+8. The files that are created right after the installation of Ansible are located in the directory /etc/ansible. We could find the following files there:
+    1. ansible.cfg
+    2. hosts
+    3. roles -> Here's where's gonna be located the roles dowloaded by https://galaxy.ansible.com/ui/
+
+9. I can have two types of commands:
+
+    1. Ad hoc commands:
+        1. ansible myservers -m ping
+
+    2. Commands applied to ansible commands:
+        1. ansible-playbook sample.yml -> This command is execute into the hosts that are list in "hosts" file
+
+10. There are two installation process:
+    1. By pip
+    2. By OS directly
+
 1. I don't have create a [] called all that's going to gather all groups because by defautl Ansible do it
 2. Module Index: https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
