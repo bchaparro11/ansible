@@ -1,0 +1,12 @@
+---
+- name: Execute "ls -la" on the remote node without Python dependencies
+  hosts: remote_node
+  gather_facts: false
+  tasks:
+    - name: Run "ls -la" and display output
+      ansible.builtin.raw: ls -la
+      register: command_output
+
+    - name: Display command output
+      debug:
+        var: command_output.stdout_lines
