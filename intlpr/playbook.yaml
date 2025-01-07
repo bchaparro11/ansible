@@ -1,12 +1,23 @@
 ---
-- name: Execute "ls -la" on the remote node without Python dependencies
-  hosts: remote_node
+- name: Create MongoDB user in all clusters
+  hosts: groups
   gather_facts: false
   tasks:
-    - name: Run "ls -la" and display output
-      ansible.builtin.raw: ls -la
-      register: command_output
+    - name: Check if node in cluster is a PRIMARY
+      ansible.builtin.raw: |
+        mongo -u <FIRST_DBA_USER> -p <FIRST_DBA_PASS> --authenticationDatabase admin --eval "rs.status().myState"
+      register: is_primary
 
-    - name: Display command output
+    - name: Create user if PRIMARY
+      ansible.builtin.raw: |
+        mongo -u <FIRST_DBA_USER> -p <FIRST_DBA_PASS> --authenticationDatabase admin --eval 'db.getSiblingDB("admin").createUser({user: "",pwd: "",roles: [{ role: "root", db: "admin" }]})'
+      when: is_primary.stdout_lines[-1] | int == 1
+      register: create_user
+
+    - name: Output First Stage
       debug:
-        var: command_output.stdout_lines
+        var: is_primary.stdout_lines[-1]
+
+    - name: Output Second Stage
+      debug:
+        var: create_user.stdout_lines
