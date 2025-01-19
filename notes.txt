@@ -36,5 +36,56 @@
     1. By pip
     2. By OS directly
 
+11. If I install Ansible using pip the program could not have a configuration file. A way to notice that is executing -> ansible --version. An output-example would be:
+
+    ansible [core 2.17.7]
+      config file = None
+      configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+      ansible python module location = /usr/local/lib/python3.10/dist-packages/ansible
+      ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+      executable location = /usr/local/bin/ansible
+      python version = 3.10.12 (main, Nov  6 2024, 20:22:13) [GCC 11.4.0] (/usr/bin/python3)
+      jinja version = 3.0.3
+      libyaml = True
+    
+    Through this output we oculd realize that the config file field is equal to None, namely, there's no config file
+
+12. I could create more groupings in the same inventory file
+
+13. Inside the playbook I can reference:
+        1. All nodes by the keyword "all" or "*"
+        2. One host
+        3. Multiple hosts
+        4. Groupings
+        5. Multiple groups
+        6. Excluding logs
+        7. Intersection of groups
+
+    I could check more information about in -> https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html
+
+14. Examples comparing ad hoc commmands with playbook.yml notation:
+    
+        Documentation:
+
+            https://docs.ansible.com/ansible/2.9/modules/find_module.html#find-module
+
+        Playbook.yml:
+            
+            - name: Find /var/log all files
+              find:
+                paths: /var/log
+                recurse: no
+                file_type: file
+
+        Ad Hoc commmand:
+            
+            ansible localhost -m find -a "paths=/var/log file_type=file"
+  
+        Notes:
+            
+            I could use "ls" instead of a "find module", but in this case the module gave more data
+
 1. I don't have create a [] called all that's going to gather all groups because by defautl Ansible do it
 2. Module Index: https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
+
+4.2
